@@ -11,7 +11,7 @@ const inlineRuleFiles = (filePaths: string[], baseDir: string): Promise<string[]
     );
 };
 type MorphemeMatchOptions =
-    | { dictionaryPathList: string[] }
+    | { rulePaths: string[] }
     | ({
           ruleContents: string[];
       } & TextlintRuleOptions);
@@ -33,7 +33,7 @@ export const morphemeMatch = async ({
     const baseDir = path.dirname(configFilePath);
     return {
         ...options,
-        dictionaryPathList: [],
-        ruleContents: await inlineRuleFiles(options.dictionaryPathList, baseDir)
+        rulePaths: [],
+        ruleContents: await inlineRuleFiles(options.rulePaths, baseDir)
     };
 };

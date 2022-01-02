@@ -6,14 +6,14 @@ import * as fs from "fs";
 describe("morpheme-match", function () {
     it("inline dictionaryPathList to ruleContents", async () => {
         const morphemeMatchOptions = await morphemeMatch({
-            configFilePath: "fixtures/morpheme-match/dictionary.json",
+            configFilePath: "fixtures/morpheme-match/dictionary.js",
             options: {
-                dictionaryPathList: [path.join(__dirname, "fixtures/morpheme-match/dictionary.json")]
+                rulePaths: [path.join(__dirname, "fixtures/morpheme-match/dictionary.js")]
             }
         });
         assert.deepStrictEqual(morphemeMatchOptions, {
-            dictionaryPathList: [],
-            ruleContents: [fs.readFileSync(path.join(__dirname, "fixtures/morpheme-match/dictionary.json"), "utf-8")]
+            rulePaths: [],
+            ruleContents: [fs.readFileSync(path.join(__dirname, "fixtures/morpheme-match/dictionary.js"), "utf-8")]
         });
     });
 });
