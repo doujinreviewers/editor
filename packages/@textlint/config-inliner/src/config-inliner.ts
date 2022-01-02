@@ -1,5 +1,6 @@
 import type { TextlintConfigDescriptor } from "@textlint/config-loader";
 import { prh } from "./rules/prh";
+import { morphemeMatch } from "./rules/morpheme-match";
 
 export const inlineConfig = async ({
     cwd = process.cwd(),
@@ -18,6 +19,15 @@ export const inlineConfig = async ({
                     return {
                         ...rule,
                         options: await prh({
+                            cwd,
+                            configFilePath,
+                            options: rule.options
+                        })
+                    };
+                } else if (rule.ruleId === "@textlint-ja/morpheme-match") {
+                    return {
+                        ...rule,
+                        options: await morphemeMatch({
                             cwd,
                             configFilePath,
                             options: rule.options
